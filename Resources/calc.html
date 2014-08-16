@@ -1,0 +1,499 @@
+<html>
+<head>
+	<title>Test</title>
+	<script src="jquery.js"></script>
+	<script src="jsbn.js"></script>
+	<script src="jsbn2.js"></script>	
+	<script src="jquery-ui-1.8.4.custom.min.js"></script>
+	<script src="range_calc.js"></script>
+</head>
+<body>
+
+<div class="calculator-wrap" style="
+">
+	<div class="calculator-left">
+	  <noscript>
+	    Warning! The Poker Hand Range Calculator requires JavaScript to be enabled in your browser.
+	    &lt;br /&gt;
+	    Please enable JavaScript.
+	    &lt;br /&gt;
+	    &lt;br /&gt;
+	    </noscript>
+	    <script type="text/javascript">
+	        var handListVs1 = new Array("AA","KK","QQ","JJ","TT","99","88","AKs","AQs","AKo","77","AJs","ATs","AQo","KQs","AJo","KJs","A9s","66","KTs","ATo","A8s","KQo","A7s","QJs","KJo","K9s","A9o","55","QTs","A6s","A5s","A8o","A4s","KTo","K8s","Q9s","QJo","A7o","A3s","JTs","K7s","A2s","44","K9o","QTo","K6s","A5o","A6o","Q8s","K5s","J9s","A4o","K8o","Q9o","K4s","A3o","JTo","Q7s","33","K7o","J8s","T9s","A2o","K3s","Q6s","K2s","K6o","Q8o","Q5s","J9o","K5o","J7s","T8s","Q4s","K4o","Q3s","22","98s","T9o","Q7o","T7s","J6s","J8o","K3o","Q2s","Q6o","J5s","K2o","Q5o","T8o","J7o","J4s","97s","T6s","J3s","Q4o","87s","J2s","T5s","96s","98o","J6o","Q3o","T7o","T4s","Q2o","J5o","86s","T3s","95s","97o","T6o","T2s","J4o","76s","85s","J3o","94s","87o","75s","J2o","T5o","93s","96o","92s","84s","65s","T4o","86o","T3o","74s","95o","83s","64s","76o","54s","T2o","82s","73s","85o","94o","53s","63s","75o","93o","72s","65o","84o","43s","92o","62s","52s","74o","42s","83o","54o","64o","32s","82o","73o","53o","63o","43o","72o","52o","62o","42o","32o");
+	        var handListVs2 = new Array("AA","KK","QQ","JJ","TT","99","AKs","AQs","88","AJs","AKo","KQs","ATs","AQo","77","KJs","A9s","KTs","AJo","KQo","QJs","A8s","66","QTs","ATo","K9s","A7s","KJo","JTs","A5s","A6s","KTo","Q9s","55","A9o","QJo","A4s","K8s","A3s","A8o","K7s","J9s","QTo","A2s","Q8s","K9o","K6s","A7o","T9s","44","JTo","K5s","J8s","A5o","Q7s","A6o","Q9o","K4s","T8s","K3s","K8o","A4o","Q6s","98s","K7o","J7s","K2s","A3o","33","J9o","Q5s","T7s","Q8o","T9o","A2o","K6o","Q4s","J6s","97s","Q3s","J5s","K5o","87s","J8o","22","T6s","Q2s","Q7o","J4s","96s","K4o","T8o","86s","76s","J3s","98o","Q6o","J7o","K3o","T5s","T4s","K2o","J2s","95s","Q5o","T3s","T7o","85s","65s","Q4o","75s","J6o","T2s","97o","94s","87o","Q3o","93s","54s","84s","J5o","64s","T6o","74s","Q2o","92s","J4o","53s","96o","86o","76o","73s","83s","63s","J3o","T5o","82s","43s","J2o","T4o","95o","52s","62s","72s","85o","65o","75o","T3o","42s","32s","T2o","94o","54o","84o","64o","93o","74o","92o","53o","83o","63o","73o","43o","82o","52o","62o","72o","42o","32o");
+	        var handListVs3 = new Array("AA","KK","QQ","JJ","TT","AKs","99","AQs","AJs","KQs","AKo","88","ATs","KJs","AQo","KTs","QJs","77","A9s","AJo","KQo","QTs","A8s","K9s","JTs","A7s","ATo","66","KJo","Q9s","A6s","A5s","QJo","KTo","K8s","A4s","J9s","A9o","T9s","K7s","A3s","55","Q8s","QTo","A2s","K6s","JTo","J8s","A8o","K9o","K5s","T8s","Q7s","K4s","44","98s","A7o","Q6s","J7s","K3s","Q9o","K2s","T7s","Q5s","A5o","A6o","J9o","K8o","97s","87s","33","Q4s","T9o","J6s","A4o","K7o","A3o","Q8o","Q3s","Q2s","J5s","T6s","22","96s","A2o","76s","86s","J4s","J8o","K6o","T8o","J3s","K5o","J2s","T5s","Q7o","75s","98o","T4s","65s","85s","95s","K4o","J7o","T3s","T2s","Q6o","T7o","94s","K3o","74s","64s","54s","Q5o","84s","97o","K2o","93s","87o","Q4o","92s","53s","J6o","73s","83s","63s","43s","Q3o","T6o","J5o","82s","86o","76o","Q2o","96o","52s","62s","J4o","42s","72s","T5o","32s","J3o","75o","65o","95o","85o","J2o","T4o","T3o","54o","64o","T2o","94o","84o","74o","93o","53o","92o","63o","73o","43o","83o","82o","52o","62o","42o","72o","32o");
+            var handList;
+            var vs = 3;
+	        
+	        var pocketCards = new Object();
+	        
+	         
+	    </script>
+		  <div id="calculator-grid" class="calculator-grid" style="cursor: default;">
+		    <div class="element-header">
+                <h6>Hand grid</h6>
+            </div>
+            <div class="element-contents">
+			<table id="fullTable" cellspacing="2" cellpadding="0">
+				
+				  <tbody><tr class="row">
+					  
+					    <td id="cid_AA" class="cell" onmousedown="javascript:flipColor('AA');return false;" onmouseover="javascript:selectPocket('AA');return false;" style="background-color: rgb(122, 186, 101);">AA</td>
+					  
+					    <td id="cid_AKs" class="cell" onmousedown="javascript:flipColor('AKs');return false;" onmouseover="javascript:selectPocket('AKs');return false;" style="background-color: rgb(122, 186, 101);">AKs</td>
+					  
+					    <td id="cid_AQs" class="cell" onmousedown="javascript:flipColor('AQs');return false;" onmouseover="javascript:selectPocket('AQs');return false;" style="background-color: rgb(122, 186, 101);">AQs</td>
+					  
+					    <td id="cid_AJs" class="cell" onmousedown="javascript:flipColor('AJs');return false;" onmouseover="javascript:selectPocket('AJs');return false;" style="background-color: rgb(122, 186, 101);">AJs</td>
+					  
+					    <td id="cid_ATs" class="cell" onmousedown="javascript:flipColor('ATs');return false;" onmouseover="javascript:selectPocket('ATs');return false;" style="background-color: rgb(122, 186, 101);">ATs</td>
+					  
+					    <td id="cid_A9s" class="cell" onmousedown="javascript:flipColor('A9s');return false;" onmouseover="javascript:selectPocket('A9s');return false;" style="background-color: rgb(122, 186, 101);">A9s</td>
+					  
+					    <td id="cid_A8s" class="cell" onmousedown="javascript:flipColor('A8s');return false;" onmouseover="javascript:selectPocket('A8s');return false;" style="background-color: rgb(122, 186, 101);">A8s</td>
+					  
+					    <td id="cid_A7s" class="cell" onmousedown="javascript:flipColor('A7s');return false;" onmouseover="javascript:selectPocket('A7s');return false;" style="background-color: rgb(122, 186, 101);">A7s</td>
+					  
+					    <td id="cid_A6s" class="cell" onmousedown="javascript:flipColor('A6s');return false;" onmouseover="javascript:selectPocket('A6s');return false;" style="background-color: rgb(122, 186, 101);">A6s</td>
+					  
+					    <td id="cid_A5s" class="cell" onmousedown="javascript:flipColor('A5s');return false;" onmouseover="javascript:selectPocket('A5s');return false;" style="background-color: rgb(122, 186, 101);">A5s</td>
+					  
+					    <td id="cid_A4s" class="cell" onmousedown="javascript:flipColor('A4s');return false;" onmouseover="javascript:selectPocket('A4s');return false;" style="background-color: rgb(122, 186, 101);">A4s</td>
+					  
+					    <td id="cid_A3s" class="cell" onmousedown="javascript:flipColor('A3s');return false;" onmouseover="javascript:selectPocket('A3s');return false;" style="background-color: rgb(122, 186, 101);">A3s</td>
+					  
+					    <td id="cid_A2s" class="cell" onmousedown="javascript:flipColor('A2s');return false;" onmouseover="javascript:selectPocket('A2s');return false;" style="background-color: rgb(217, 224, 214);">A2s</td>
+					  
+				  </tr>
+				
+				  <tr class="row">
+					  
+					    <td id="cid_AKo" class="cell" onmousedown="javascript:flipColor('AKo');return false;" onmouseover="javascript:selectPocket('AKo');return false;" style="background-color: rgb(122, 186, 101);">AKo</td>
+					  
+					    <td id="cid_KK" class="cell" onmousedown="javascript:flipColor('KK');return false;" onmouseover="javascript:selectPocket('KK');return false;" style="background-color: rgb(122, 186, 101);">KK</td>
+					  
+					    <td id="cid_KQs" class="cell" onmousedown="javascript:flipColor('KQs');return false;" onmouseover="javascript:selectPocket('KQs');return false;" style="background-color: rgb(122, 186, 101);">KQs</td>
+					  
+					    <td id="cid_KJs" class="cell" onmousedown="javascript:flipColor('KJs');return false;" onmouseover="javascript:selectPocket('KJs');return false;" style="background-color: rgb(122, 186, 101);">KJs</td>
+					  
+					    <td id="cid_KTs" class="cell" onmousedown="javascript:flipColor('KTs');return false;" onmouseover="javascript:selectPocket('KTs');return false;" style="background-color: rgb(122, 186, 101);">KTs</td>
+					  
+					    <td id="cid_K9s" class="cell" onmousedown="javascript:flipColor('K9s');return false;" onmouseover="javascript:selectPocket('K9s');return false;" style="background-color: rgb(122, 186, 101);">K9s</td>
+					  
+					    <td id="cid_K8s" class="cell" onmousedown="javascript:flipColor('K8s');return false;" onmouseover="javascript:selectPocket('K8s');return false;" style="background-color: rgb(122, 186, 101);">K8s</td>
+					  
+					    <td id="cid_K7s" class="cell" onmousedown="javascript:flipColor('K7s');return false;" onmouseover="javascript:selectPocket('K7s');return false;" style="background-color: rgb(217, 224, 214);">K7s</td>
+					  
+					    <td id="cid_K6s" class="cell" onmousedown="javascript:flipColor('K6s');return false;" onmouseover="javascript:selectPocket('K6s');return false;" style="background-color: rgb(217, 224, 214);">K6s</td>
+					  
+					    <td id="cid_K5s" class="cell" onmousedown="javascript:flipColor('K5s');return false;" onmouseover="javascript:selectPocket('K5s');return false;" style="background-color: rgb(217, 224, 214);">K5s</td>
+					  
+					    <td id="cid_K4s" class="cell" onmousedown="javascript:flipColor('K4s');return false;" onmouseover="javascript:selectPocket('K4s');return false;" style="background-color: rgb(217, 224, 214);">K4s</td>
+					  
+					    <td id="cid_K3s" class="cell" onmousedown="javascript:flipColor('K3s');return false;" onmouseover="javascript:selectPocket('K3s');return false;" style="background-color: rgb(217, 224, 214);">K3s</td>
+					  
+					    <td id="cid_K2s" class="cell" onmousedown="javascript:flipColor('K2s');return false;" onmouseover="javascript:selectPocket('K2s');return false;" style="background-color: rgb(217, 224, 214);">K2s</td>
+					  
+				  </tr>
+				
+				  <tr class="row">
+					  
+					    <td id="cid_AQo" class="cell" onmousedown="javascript:flipColor('AQo');return false;" onmouseover="javascript:selectPocket('AQo');return false;" style="background-color: rgb(122, 186, 101);">AQo</td>
+					  
+					    <td id="cid_KQo" class="cell" onmousedown="javascript:flipColor('KQo');return false;" onmouseover="javascript:selectPocket('KQo');return false;" style="background-color: rgb(122, 186, 101);">KQo</td>
+					  
+					    <td id="cid_QQ" class="cell" onmousedown="javascript:flipColor('QQ');return false;" onmouseover="javascript:selectPocket('QQ');return false;" style="background-color: rgb(122, 186, 101);">QQ</td>
+					  
+					    <td id="cid_QJs" class="cell" onmousedown="javascript:flipColor('QJs');return false;" onmouseover="javascript:selectPocket('QJs');return false;" style="background-color: rgb(122, 186, 101);">QJs</td>
+					  
+					    <td id="cid_QTs" class="cell" onmousedown="javascript:flipColor('QTs');return false;" onmouseover="javascript:selectPocket('QTs');return false;" style="background-color: rgb(122, 186, 101);">QTs</td>
+					  
+					    <td id="cid_Q9s" class="cell" onmousedown="javascript:flipColor('Q9s');return false;" onmouseover="javascript:selectPocket('Q9s');return false;" style="background-color: rgb(122, 186, 101);">Q9s</td>
+					  
+					    <td id="cid_Q8s" class="cell" onmousedown="javascript:flipColor('Q8s');return false;" onmouseover="javascript:selectPocket('Q8s');return false;" style="background-color: rgb(217, 224, 214);">Q8s</td>
+					  
+					    <td id="cid_Q7s" class="cell" onmousedown="javascript:flipColor('Q7s');return false;" onmouseover="javascript:selectPocket('Q7s');return false;" style="background-color: rgb(217, 224, 214);">Q7s</td>
+					  
+					    <td id="cid_Q6s" class="cell" onmousedown="javascript:flipColor('Q6s');return false;" onmouseover="javascript:selectPocket('Q6s');return false;" style="background-color: rgb(217, 224, 214);">Q6s</td>
+					  
+					    <td id="cid_Q5s" class="cell" onmousedown="javascript:flipColor('Q5s');return false;" onmouseover="javascript:selectPocket('Q5s');return false;" style="background-color: rgb(217, 224, 214);">Q5s</td>
+					  
+					    <td id="cid_Q4s" class="cell" onmousedown="javascript:flipColor('Q4s');return false;" onmouseover="javascript:selectPocket('Q4s');return false;" style="background-color: rgb(217, 224, 214);">Q4s</td>
+					  
+					    <td id="cid_Q3s" class="cell" onmousedown="javascript:flipColor('Q3s');return false;" onmouseover="javascript:selectPocket('Q3s');return false;" style="background-color: rgb(217, 224, 214);">Q3s</td>
+					  
+					    <td id="cid_Q2s" class="cell" onmousedown="javascript:flipColor('Q2s');return false;" onmouseover="javascript:selectPocket('Q2s');return false;" style="background-color: rgb(217, 224, 214);">Q2s</td>
+					  
+				  </tr>
+				
+				  <tr class="row">
+					  
+					    <td id="cid_AJo" class="cell" onmousedown="javascript:flipColor('AJo');return false;" onmouseover="javascript:selectPocket('AJo');return false;" style="background-color: rgb(122, 186, 101);">AJo</td>
+					  
+					    <td id="cid_KJo" class="cell" onmousedown="javascript:flipColor('KJo');return false;" onmouseover="javascript:selectPocket('KJo');return false;" style="background-color: rgb(122, 186, 101);">KJo</td>
+					  
+					    <td id="cid_QJo" class="cell" onmousedown="javascript:flipColor('QJo');return false;" onmouseover="javascript:selectPocket('QJo');return false;" style="background-color: rgb(122, 186, 101);">QJo</td>
+					  
+					    <td id="cid_JJ" class="cell" onmousedown="javascript:flipColor('JJ');return false;" onmouseover="javascript:selectPocket('JJ');return false;" style="background-color: rgb(122, 186, 101);">JJ</td>
+					  
+					    <td id="cid_JTs" class="cell" onmousedown="javascript:flipColor('JTs');return false;" onmouseover="javascript:selectPocket('JTs');return false;" style="background-color: rgb(217, 224, 214);">JTs</td>
+					  
+					    <td id="cid_J9s" class="cell" onmousedown="javascript:flipColor('J9s');return false;" onmouseover="javascript:selectPocket('J9s');return false;" style="background-color: rgb(217, 224, 214);">J9s</td>
+					  
+					    <td id="cid_J8s" class="cell" onmousedown="javascript:flipColor('J8s');return false;" onmouseover="javascript:selectPocket('J8s');return false;" style="background-color: rgb(217, 224, 214);">J8s</td>
+					  
+					    <td id="cid_J7s" class="cell" onmousedown="javascript:flipColor('J7s');return false;" onmouseover="javascript:selectPocket('J7s');return false;" style="background-color: rgb(217, 224, 214);">J7s</td>
+					  
+					    <td id="cid_J6s" class="cell" onmousedown="javascript:flipColor('J6s');return false;" onmouseover="javascript:selectPocket('J6s');return false;" style="background-color: rgb(217, 224, 214);">J6s</td>
+					  
+					    <td id="cid_J5s" class="cell" onmousedown="javascript:flipColor('J5s');return false;" onmouseover="javascript:selectPocket('J5s');return false;" style="background-color: rgb(217, 224, 214);">J5s</td>
+					  
+					    <td id="cid_J4s" class="cell" onmousedown="javascript:flipColor('J4s');return false;" onmouseover="javascript:selectPocket('J4s');return false;" style="background-color: rgb(217, 224, 214);">J4s</td>
+					  
+					    <td id="cid_J3s" class="cell" onmousedown="javascript:flipColor('J3s');return false;" onmouseover="javascript:selectPocket('J3s');return false;" style="background-color: rgb(217, 224, 214);">J3s</td>
+					  
+					    <td id="cid_J2s" class="cell" onmousedown="javascript:flipColor('J2s');return false;" onmouseover="javascript:selectPocket('J2s');return false;" style="background-color: rgb(217, 224, 214);">J2s</td>
+					  
+				  </tr>
+				
+				  <tr class="row">
+					  
+					    <td id="cid_ATo" class="cell" onmousedown="javascript:flipColor('ATo');return false;" onmouseover="javascript:selectPocket('ATo');return false;" style="background-color: rgb(122, 186, 101);">ATo</td>
+					  
+					    <td id="cid_KTo" class="cell" onmousedown="javascript:flipColor('KTo');return false;" onmouseover="javascript:selectPocket('KTo');return false;" style="background-color: rgb(122, 186, 101);">KTo</td>
+					  
+					    <td id="cid_QTo" class="cell" onmousedown="javascript:flipColor('QTo');return false;" onmouseover="javascript:selectPocket('QTo');return false;" style="background-color: rgb(217, 224, 214);">QTo</td>
+					  
+					    <td id="cid_JTo" class="cell" onmousedown="javascript:flipColor('JTo');return false;" onmouseover="javascript:selectPocket('JTo');return false;" style="background-color: rgb(217, 224, 214);">JTo</td>
+					  
+					    <td id="cid_TT" class="cell" onmousedown="javascript:flipColor('TT');return false;" onmouseover="javascript:selectPocket('TT');return false;" style="background-color: rgb(122, 186, 101);">TT</td>
+					  
+					    <td id="cid_T9s" class="cell" onmousedown="javascript:flipColor('T9s');return false;" onmouseover="javascript:selectPocket('T9s');return false;" style="background-color: rgb(217, 224, 214);">T9s</td>
+					  
+					    <td id="cid_T8s" class="cell" onmousedown="javascript:flipColor('T8s');return false;" onmouseover="javascript:selectPocket('T8s');return false;" style="background-color: rgb(217, 224, 214);">T8s</td>
+					  
+					    <td id="cid_T7s" class="cell" onmousedown="javascript:flipColor('T7s');return false;" onmouseover="javascript:selectPocket('T7s');return false;" style="background-color: rgb(217, 224, 214);">T7s</td>
+					  
+					    <td id="cid_T6s" class="cell" onmousedown="javascript:flipColor('T6s');return false;" onmouseover="javascript:selectPocket('T6s');return false;" style="background-color: rgb(217, 224, 214);">T6s</td>
+					  
+					    <td id="cid_T5s" class="cell" onmousedown="javascript:flipColor('T5s');return false;" onmouseover="javascript:selectPocket('T5s');return false;" style="background-color: rgb(217, 224, 214);">T5s</td>
+					  
+					    <td id="cid_T4s" class="cell" onmousedown="javascript:flipColor('T4s');return false;" onmouseover="javascript:selectPocket('T4s');return false;" style="background-color: rgb(217, 224, 214);">T4s</td>
+					  
+					    <td id="cid_T3s" class="cell" onmousedown="javascript:flipColor('T3s');return false;" onmouseover="javascript:selectPocket('T3s');return false;" style="background-color: rgb(217, 224, 214);">T3s</td>
+					  
+					    <td id="cid_T2s" class="cell" onmousedown="javascript:flipColor('T2s');return false;" onmouseover="javascript:selectPocket('T2s');return false;" style="background-color: rgb(217, 224, 214);">T2s</td>
+					  
+				  </tr>
+				
+				  <tr class="row">
+					  
+					    <td id="cid_A9o" class="cell" onmousedown="javascript:flipColor('A9o');return false;" onmouseover="javascript:selectPocket('A9o');return false;" style="background-color: rgb(122, 186, 101);">A9o</td>
+					  
+					    <td id="cid_K9o" class="cell" onmousedown="javascript:flipColor('K9o');return false;" onmouseover="javascript:selectPocket('K9o');return false;" style="background-color: rgb(217, 224, 214);">K9o</td>
+					  
+					    <td id="cid_Q9o" class="cell" onmousedown="javascript:flipColor('Q9o');return false;" onmouseover="javascript:selectPocket('Q9o');return false;" style="background-color: rgb(217, 224, 214);">Q9o</td>
+					  
+					    <td id="cid_J9o" class="cell" onmousedown="javascript:flipColor('J9o');return false;" onmouseover="javascript:selectPocket('J9o');return false;" style="background-color: rgb(217, 224, 214);">J9o</td>
+					  
+					    <td id="cid_T9o" class="cell" onmousedown="javascript:flipColor('T9o');return false;" onmouseover="javascript:selectPocket('T9o');return false;" style="background-color: rgb(217, 224, 214);">T9o</td>
+					  
+					    <td id="cid_99" class="cell" onmousedown="javascript:flipColor('99');return false;" onmouseover="javascript:selectPocket('99');return false;" style="background-color: rgb(122, 186, 101);">99</td>
+					  
+					    <td id="cid_98s" class="cell" onmousedown="javascript:flipColor('98s');return false;" onmouseover="javascript:selectPocket('98s');return false;" style="background-color: rgb(217, 224, 214);">98s</td>
+					  
+					    <td id="cid_97s" class="cell" onmousedown="javascript:flipColor('97s');return false;" onmouseover="javascript:selectPocket('97s');return false;" style="background-color: rgb(217, 224, 214);">97s</td>
+					  
+					    <td id="cid_96s" class="cell" onmousedown="javascript:flipColor('96s');return false;" onmouseover="javascript:selectPocket('96s');return false;" style="background-color: rgb(217, 224, 214);">96s</td>
+					  
+					    <td id="cid_95s" class="cell" onmousedown="javascript:flipColor('95s');return false;" onmouseover="javascript:selectPocket('95s');return false;" style="background-color: rgb(217, 224, 214);">95s</td>
+					  
+					    <td id="cid_94s" class="cell" onmousedown="javascript:flipColor('94s');return false;" onmouseover="javascript:selectPocket('94s');return false;" style="background-color: rgb(217, 224, 214);">94s</td>
+					  
+					    <td id="cid_93s" class="cell" onmousedown="javascript:flipColor('93s');return false;" onmouseover="javascript:selectPocket('93s');return false;" style="background-color: rgb(217, 224, 214);">93s</td>
+					  
+					    <td id="cid_92s" class="cell" onmousedown="javascript:flipColor('92s');return false;" onmouseover="javascript:selectPocket('92s');return false;" style="background-color: rgb(217, 224, 214);">92s</td>
+					  
+				  </tr>
+				
+				  <tr class="row">
+					  
+					    <td id="cid_A8o" class="cell" onmousedown="javascript:flipColor('A8o');return false;" onmouseover="javascript:selectPocket('A8o');return false;" style="background-color: rgb(122, 186, 101);">A8o</td>
+					  
+					    <td id="cid_K8o" class="cell" onmousedown="javascript:flipColor('K8o');return false;" onmouseover="javascript:selectPocket('K8o');return false;" style="background-color: rgb(217, 224, 214);">K8o</td>
+					  
+					    <td id="cid_Q8o" class="cell" onmousedown="javascript:flipColor('Q8o');return false;" onmouseover="javascript:selectPocket('Q8o');return false;" style="background-color: rgb(217, 224, 214);">Q8o</td>
+					  
+					    <td id="cid_J8o" class="cell" onmousedown="javascript:flipColor('J8o');return false;" onmouseover="javascript:selectPocket('J8o');return false;" style="background-color: rgb(217, 224, 214);">J8o</td>
+					  
+					    <td id="cid_T8o" class="cell" onmousedown="javascript:flipColor('T8o');return false;" onmouseover="javascript:selectPocket('T8o');return false;" style="background-color: rgb(217, 224, 214);">T8o</td>
+					  
+					    <td id="cid_98o" class="cell" onmousedown="javascript:flipColor('98o');return false;" onmouseover="javascript:selectPocket('98o');return false;" style="background-color: rgb(217, 224, 214);">98o</td>
+					  
+					    <td id="cid_88" class="cell" onmousedown="javascript:flipColor('88');return false;" onmouseover="javascript:selectPocket('88');return false;" style="background-color: rgb(122, 186, 101);">88</td>
+					  
+					    <td id="cid_87s" class="cell" onmousedown="javascript:flipColor('87s');return false;" onmouseover="javascript:selectPocket('87s');return false;" style="background-color: rgb(217, 224, 214);">87s</td>
+					  
+					    <td id="cid_86s" class="cell" onmousedown="javascript:flipColor('86s');return false;" onmouseover="javascript:selectPocket('86s');return false;" style="background-color: rgb(217, 224, 214);">86s</td>
+					  
+					    <td id="cid_85s" class="cell" onmousedown="javascript:flipColor('85s');return false;" onmouseover="javascript:selectPocket('85s');return false;" style="background-color: rgb(217, 224, 214);">85s</td>
+					  
+					    <td id="cid_84s" class="cell" onmousedown="javascript:flipColor('84s');return false;" onmouseover="javascript:selectPocket('84s');return false;" style="background-color: rgb(217, 224, 214);">84s</td>
+					  
+					    <td id="cid_83s" class="cell" onmousedown="javascript:flipColor('83s');return false;" onmouseover="javascript:selectPocket('83s');return false;" style="background-color: rgb(217, 224, 214);">83s</td>
+					  
+					    <td id="cid_82s" class="cell" onmousedown="javascript:flipColor('82s');return false;" onmouseover="javascript:selectPocket('82s');return false;" style="background-color: rgb(217, 224, 214);">82s</td>
+					  
+				  </tr>
+				
+				  <tr class="row">
+					  
+					    <td id="cid_A7o" class="cell" onmousedown="javascript:flipColor('A7o');return false;" onmouseover="javascript:selectPocket('A7o');return false;" style="background-color: rgb(122, 186, 101);">A7o</td>
+					  
+					    <td id="cid_K7o" class="cell" onmousedown="javascript:flipColor('K7o');return false;" onmouseover="javascript:selectPocket('K7o');return false;" style="background-color: rgb(217, 224, 214);">K7o</td>
+					  
+					    <td id="cid_Q7o" class="cell" onmousedown="javascript:flipColor('Q7o');return false;" onmouseover="javascript:selectPocket('Q7o');return false;" style="background-color: rgb(217, 224, 214);">Q7o</td>
+					  
+					    <td id="cid_J7o" class="cell" onmousedown="javascript:flipColor('J7o');return false;" onmouseover="javascript:selectPocket('J7o');return false;" style="background-color: rgb(217, 224, 214);">J7o</td>
+					  
+					    <td id="cid_T7o" class="cell" onmousedown="javascript:flipColor('T7o');return false;" onmouseover="javascript:selectPocket('T7o');return false;" style="background-color: rgb(217, 224, 214);">T7o</td>
+					  
+					    <td id="cid_97o" class="cell" onmousedown="javascript:flipColor('97o');return false;" onmouseover="javascript:selectPocket('97o');return false;" style="background-color: rgb(217, 224, 214);">97o</td>
+					  
+					    <td id="cid_87o" class="cell" onmousedown="javascript:flipColor('87o');return false;" onmouseover="javascript:selectPocket('87o');return false;" style="background-color: rgb(217, 224, 214);">87o</td>
+					  
+					    <td id="cid_77" class="cell" onmousedown="javascript:flipColor('77');return false;" onmouseover="javascript:selectPocket('77');return false;" style="background-color: rgb(122, 186, 101);">77</td>
+					  
+					    <td id="cid_76s" class="cell" onmousedown="javascript:flipColor('76s');return false;" onmouseover="javascript:selectPocket('76s');return false;" style="background-color: rgb(217, 224, 214);">76s</td>
+					  
+					    <td id="cid_75s" class="cell" onmousedown="javascript:flipColor('75s');return false;" onmouseover="javascript:selectPocket('75s');return false;" style="background-color: rgb(217, 224, 214);">75s</td>
+					  
+					    <td id="cid_74s" class="cell" onmousedown="javascript:flipColor('74s');return false;" onmouseover="javascript:selectPocket('74s');return false;" style="background-color: rgb(217, 224, 214);">74s</td>
+					  
+					    <td id="cid_73s" class="cell" onmousedown="javascript:flipColor('73s');return false;" onmouseover="javascript:selectPocket('73s');return false;" style="background-color: rgb(217, 224, 214);">73s</td>
+					  
+					    <td id="cid_72s" class="cell" onmousedown="javascript:flipColor('72s');return false;" onmouseover="javascript:selectPocket('72s');return false;" style="background-color: rgb(217, 224, 214);">72s</td>
+					  
+				  </tr>
+				
+				  <tr class="row">
+					  
+					    <td id="cid_A6o" class="cell" onmousedown="javascript:flipColor('A6o');return false;" onmouseover="javascript:selectPocket('A6o');return false;" style="background-color: rgb(217, 224, 214);">A6o</td>
+					  
+					    <td id="cid_K6o" class="cell" onmousedown="javascript:flipColor('K6o');return false;" onmouseover="javascript:selectPocket('K6o');return false;" style="background-color: rgb(217, 224, 214);">K6o</td>
+					  
+					    <td id="cid_Q6o" class="cell" onmousedown="javascript:flipColor('Q6o');return false;" onmouseover="javascript:selectPocket('Q6o');return false;" style="background-color: rgb(217, 224, 214);">Q6o</td>
+					  
+					    <td id="cid_J6o" class="cell" onmousedown="javascript:flipColor('J6o');return false;" onmouseover="javascript:selectPocket('J6o');return false;" style="background-color: rgb(217, 224, 214);">J6o</td>
+					  
+					    <td id="cid_T6o" class="cell" onmousedown="javascript:flipColor('T6o');return false;" onmouseover="javascript:selectPocket('T6o');return false;" style="background-color: rgb(217, 224, 214);">T6o</td>
+					  
+					    <td id="cid_96o" class="cell" onmousedown="javascript:flipColor('96o');return false;" onmouseover="javascript:selectPocket('96o');return false;" style="background-color: rgb(217, 224, 214);">96o</td>
+					  
+					    <td id="cid_86o" class="cell" onmousedown="javascript:flipColor('86o');return false;" onmouseover="javascript:selectPocket('86o');return false;" style="background-color: rgb(217, 224, 214);">86o</td>
+					  
+					    <td id="cid_76o" class="cell" onmousedown="javascript:flipColor('76o');return false;" onmouseover="javascript:selectPocket('76o');return false;" style="background-color: rgb(217, 224, 214);">76o</td>
+					  
+					    <td id="cid_66" class="cell" onmousedown="javascript:flipColor('66');return false;" onmouseover="javascript:selectPocket('66');return false;" style="background-color: rgb(122, 186, 101);">66</td>
+					  
+					    <td id="cid_65s" class="cell" onmousedown="javascript:flipColor('65s');return false;" onmouseover="javascript:selectPocket('65s');return false;" style="background-color: rgb(217, 224, 214);">65s</td>
+					  
+					    <td id="cid_64s" class="cell" onmousedown="javascript:flipColor('64s');return false;" onmouseover="javascript:selectPocket('64s');return false;" style="background-color: rgb(217, 224, 214);">64s</td>
+					  
+					    <td id="cid_63s" class="cell" onmousedown="javascript:flipColor('63s');return false;" onmouseover="javascript:selectPocket('63s');return false;" style="background-color: rgb(217, 224, 214);">63s</td>
+					  
+					    <td id="cid_62s" class="cell" onmousedown="javascript:flipColor('62s');return false;" onmouseover="javascript:selectPocket('62s');return false;" style="background-color: rgb(217, 224, 214);">62s</td>
+					  
+				  </tr>
+				
+				  <tr class="row">
+					  
+					    <td id="cid_A5o" class="cell" onmousedown="javascript:flipColor('A5o');return false;" onmouseover="javascript:selectPocket('A5o');return false;" style="background-color: rgb(217, 224, 214);">A5o</td>
+					  
+					    <td id="cid_K5o" class="cell" onmousedown="javascript:flipColor('K5o');return false;" onmouseover="javascript:selectPocket('K5o');return false;" style="background-color: rgb(217, 224, 214);">K5o</td>
+					  
+					    <td id="cid_Q5o" class="cell" onmousedown="javascript:flipColor('Q5o');return false;" onmouseover="javascript:selectPocket('Q5o');return false;" style="background-color: rgb(217, 224, 214);">Q5o</td>
+					  
+					    <td id="cid_J5o" class="cell" onmousedown="javascript:flipColor('J5o');return false;" onmouseover="javascript:selectPocket('J5o');return false;" style="background-color: rgb(217, 224, 214);">J5o</td>
+					  
+					    <td id="cid_T5o" class="cell" onmousedown="javascript:flipColor('T5o');return false;" onmouseover="javascript:selectPocket('T5o');return false;" style="background-color: rgb(217, 224, 214);">T5o</td>
+					  
+					    <td id="cid_95o" class="cell" onmousedown="javascript:flipColor('95o');return false;" onmouseover="javascript:selectPocket('95o');return false;" style="background-color: rgb(217, 224, 214);">95o</td>
+					  
+					    <td id="cid_85o" class="cell" onmousedown="javascript:flipColor('85o');return false;" onmouseover="javascript:selectPocket('85o');return false;" style="background-color: rgb(217, 224, 214);">85o</td>
+					  
+					    <td id="cid_75o" class="cell" onmousedown="javascript:flipColor('75o');return false;" onmouseover="javascript:selectPocket('75o');return false;" style="background-color: rgb(217, 224, 214);">75o</td>
+					  
+					    <td id="cid_65o" class="cell" onmousedown="javascript:flipColor('65o');return false;" onmouseover="javascript:selectPocket('65o');return false;" style="background-color: rgb(217, 224, 214);">65o</td>
+					  
+					    <td id="cid_55" class="cell" onmousedown="javascript:flipColor('55');return false;" onmouseover="javascript:selectPocket('55');return false;" style="background-color: rgb(122, 186, 101);">55</td>
+					  
+					    <td id="cid_54s" class="cell" onmousedown="javascript:flipColor('54s');return false;" onmouseover="javascript:selectPocket('54s');return false;" style="background-color: rgb(217, 224, 214);">54s</td>
+					  
+					    <td id="cid_53s" class="cell" onmousedown="javascript:flipColor('53s');return false;" onmouseover="javascript:selectPocket('53s');return false;" style="background-color: rgb(217, 224, 214);">53s</td>
+					  
+					    <td id="cid_52s" class="cell" onmousedown="javascript:flipColor('52s');return false;" onmouseover="javascript:selectPocket('52s');return false;" style="background-color: rgb(217, 224, 214);">52s</td>
+					  
+				  </tr>
+				
+				  <tr class="row">
+					  
+					    <td id="cid_A4o" class="cell" onmousedown="javascript:flipColor('A4o');return false;" onmouseover="javascript:selectPocket('A4o');return false;" style="background-color: rgb(217, 224, 214);">A4o</td>
+					  
+					    <td id="cid_K4o" class="cell" onmousedown="javascript:flipColor('K4o');return false;" onmouseover="javascript:selectPocket('K4o');return false;" style="background-color: rgb(217, 224, 214);">K4o</td>
+					  
+					    <td id="cid_Q4o" class="cell" onmousedown="javascript:flipColor('Q4o');return false;" onmouseover="javascript:selectPocket('Q4o');return false;" style="background-color: rgb(217, 224, 214);">Q4o</td>
+					  
+					    <td id="cid_J4o" class="cell" onmousedown="javascript:flipColor('J4o');return false;" onmouseover="javascript:selectPocket('J4o');return false;" style="background-color: rgb(217, 224, 214);">J4o</td>
+					  
+					    <td id="cid_T4o" class="cell" onmousedown="javascript:flipColor('T4o');return false;" onmouseover="javascript:selectPocket('T4o');return false;" style="background-color: rgb(217, 224, 214);">T4o</td>
+					  
+					    <td id="cid_94o" class="cell" onmousedown="javascript:flipColor('94o');return false;" onmouseover="javascript:selectPocket('94o');return false;" style="background-color: rgb(217, 224, 214);">94o</td>
+					  
+					    <td id="cid_84o" class="cell" onmousedown="javascript:flipColor('84o');return false;" onmouseover="javascript:selectPocket('84o');return false;" style="background-color: rgb(217, 224, 214);">84o</td>
+					  
+					    <td id="cid_74o" class="cell" onmousedown="javascript:flipColor('74o');return false;" onmouseover="javascript:selectPocket('74o');return false;" style="background-color: rgb(217, 224, 214);">74o</td>
+					  
+					    <td id="cid_64o" class="cell" onmousedown="javascript:flipColor('64o');return false;" onmouseover="javascript:selectPocket('64o');return false;" style="background-color: rgb(217, 224, 214);">64o</td>
+					  
+					    <td id="cid_54o" class="cell" onmousedown="javascript:flipColor('54o');return false;" onmouseover="javascript:selectPocket('54o');return false;" style="background-color: rgb(217, 224, 214);">54o</td>
+					  
+					    <td id="cid_44" class="cell" onmousedown="javascript:flipColor('44');return false;" onmouseover="javascript:selectPocket('44');return false;" style="background-color: rgb(217, 224, 214);">44</td>
+					  
+					    <td id="cid_43s" class="cell" onmousedown="javascript:flipColor('43s');return false;" onmouseover="javascript:selectPocket('43s');return false;" style="background-color: rgb(217, 224, 214);">43s</td>
+					  
+					    <td id="cid_42s" class="cell" onmousedown="javascript:flipColor('42s');return false;" onmouseover="javascript:selectPocket('42s');return false;" style="background-color: rgb(217, 224, 214);">42s</td>
+					  
+				  </tr>
+				
+				  <tr class="row">
+					  
+					    <td id="cid_A3o" class="cell" onmousedown="javascript:flipColor('A3o');return false;" onmouseover="javascript:selectPocket('A3o');return false;" style="background-color: rgb(217, 224, 214);">A3o</td>
+					  
+					    <td id="cid_K3o" class="cell" onmousedown="javascript:flipColor('K3o');return false;" onmouseover="javascript:selectPocket('K3o');return false;" style="background-color: rgb(217, 224, 214);">K3o</td>
+					  
+					    <td id="cid_Q3o" class="cell" onmousedown="javascript:flipColor('Q3o');return false;" onmouseover="javascript:selectPocket('Q3o');return false;" style="background-color: rgb(217, 224, 214);">Q3o</td>
+					  
+					    <td id="cid_J3o" class="cell" onmousedown="javascript:flipColor('J3o');return false;" onmouseover="javascript:selectPocket('J3o');return false;" style="background-color: rgb(217, 224, 214);">J3o</td>
+					  
+					    <td id="cid_T3o" class="cell" onmousedown="javascript:flipColor('T3o');return false;" onmouseover="javascript:selectPocket('T3o');return false;" style="background-color: rgb(217, 224, 214);">T3o</td>
+					  
+					    <td id="cid_93o" class="cell" onmousedown="javascript:flipColor('93o');return false;" onmouseover="javascript:selectPocket('93o');return false;" style="background-color: rgb(217, 224, 214);">93o</td>
+					  
+					    <td id="cid_83o" class="cell" onmousedown="javascript:flipColor('83o');return false;" onmouseover="javascript:selectPocket('83o');return false;" style="background-color: rgb(217, 224, 214);">83o</td>
+					  
+					    <td id="cid_73o" class="cell" onmousedown="javascript:flipColor('73o');return false;" onmouseover="javascript:selectPocket('73o');return false;" style="background-color: rgb(217, 224, 214);">73o</td>
+					  
+					    <td id="cid_63o" class="cell" onmousedown="javascript:flipColor('63o');return false;" onmouseover="javascript:selectPocket('63o');return false;" style="background-color: rgb(217, 224, 214);">63o</td>
+					  
+					    <td id="cid_53o" class="cell" onmousedown="javascript:flipColor('53o');return false;" onmouseover="javascript:selectPocket('53o');return false;" style="background-color: rgb(217, 224, 214);">53o</td>
+					  
+					    <td id="cid_43o" class="cell" onmousedown="javascript:flipColor('43o');return false;" onmouseover="javascript:selectPocket('43o');return false;" style="background-color: rgb(217, 224, 214);">43o</td>
+					  
+					    <td id="cid_33" class="cell" onmousedown="javascript:flipColor('33');return false;" onmouseover="javascript:selectPocket('33');return false;" style="background-color: rgb(217, 224, 214);">33</td>
+					  
+					    <td id="cid_32s" class="cell" onmousedown="javascript:flipColor('32s');return false;" onmouseover="javascript:selectPocket('32s');return false;" style="background-color: rgb(217, 224, 214);">32s</td>
+					  
+				  </tr>
+				
+				  <tr class="row">
+					  
+					    <td id="cid_A2o" class="cell" onmousedown="javascript:flipColor('A2o');return false;" onmouseover="javascript:selectPocket('A2o');return false;" style="background-color: rgb(217, 224, 214);">A2o</td>
+					  
+					    <td id="cid_K2o" class="cell" onmousedown="javascript:flipColor('K2o');return false;" onmouseover="javascript:selectPocket('K2o');return false;" style="background-color: rgb(217, 224, 214);">K2o</td>
+					  
+					    <td id="cid_Q2o" class="cell" onmousedown="javascript:flipColor('Q2o');return false;" onmouseover="javascript:selectPocket('Q2o');return false;" style="background-color: rgb(217, 224, 214);">Q2o</td>
+					  
+					    <td id="cid_J2o" class="cell" onmousedown="javascript:flipColor('J2o');return false;" onmouseover="javascript:selectPocket('J2o');return false;" style="background-color: rgb(217, 224, 214);">J2o</td>
+					  
+					    <td id="cid_T2o" class="cell" onmousedown="javascript:flipColor('T2o');return false;" onmouseover="javascript:selectPocket('T2o');return false;" style="background-color: rgb(217, 224, 214);">T2o</td>
+					  
+					    <td id="cid_92o" class="cell" onmousedown="javascript:flipColor('92o');return false;" onmouseover="javascript:selectPocket('92o');return false;" style="background-color: rgb(217, 224, 214);">92o</td>
+					  
+					    <td id="cid_82o" class="cell" onmousedown="javascript:flipColor('82o');return false;" onmouseover="javascript:selectPocket('82o');return false;" style="background-color: rgb(217, 224, 214);">82o</td>
+					  
+					    <td id="cid_72o" class="cell" onmousedown="javascript:flipColor('72o');return false;" onmouseover="javascript:selectPocket('72o');return false;" style="background-color: rgb(217, 224, 214);">72o</td>
+					  
+					    <td id="cid_62o" class="cell" onmousedown="javascript:flipColor('62o');return false;" onmouseover="javascript:selectPocket('62o');return false;" style="background-color: rgb(217, 224, 214);">62o</td>
+					  
+					    <td id="cid_52o" class="cell" onmousedown="javascript:flipColor('52o');return false;" onmouseover="javascript:selectPocket('52o');return false;" style="background-color: rgb(217, 224, 214);">52o</td>
+					  
+					    <td id="cid_42o" class="cell" onmousedown="javascript:flipColor('42o');return false;" onmouseover="javascript:selectPocket('42o');return false;" style="background-color: rgb(217, 224, 214);">42o</td>
+					  
+					    <td id="cid_32o" class="cell" onmousedown="javascript:flipColor('32o');return false;" onmouseover="javascript:selectPocket('32o');return false;" style="background-color: rgb(217, 224, 214);">32o</td>
+					  
+					    <td id="cid_22" class="cell" onmousedown="javascript:flipColor('22');return false;" onmouseover="javascript:selectPocket('22');return false;" style="background-color: rgb(217, 224, 214);">22</td>
+					  
+				  </tr>
+				  
+			</tbody></table>
+	      </div>
+      </div>
+      <div class="calculator-link">
+        <div class="element-header">
+	      <h6>Link to the grid</h6>
+	    </div>
+	    <div class="element-contents">
+        <form id="form_range" action="">
+          <input class="link-range" id="link_range" type="text" name="link_range" readonly="">
+        </form>
+      </div>
+      </div>
+	</div>
+	<div class="calculator-right">
+	    <div class="calculator-range">
+	      <div class="element-header">
+	        <h6>Calculate range</h6>
+	      </div>
+	      <div class="element-contents">
+	        <div class="slider-value-wrap">
+	            <div>
+		            <form action="javascript:onPercentChanged()">
+		               <p>Range: 0 to <input id="slider-value" size="3" type="text" name="slider-value" onkeyup="onPercentChanged();">%
+		                 <input type="submit" value="Calculate">
+		               </p>
+		            </form>
+	            </div>
+	        </div>
+	        <!-- <div class="slider-wrap">
+               <div id="slider" class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+               <div class="ui-slider-range ui-slider-range-min ui-widget-header" style="width: 20.5%;"></div><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 20.5%;"></a></div>
+               <div class="slider-ticks">
+                  <div class="slider-ticks-0"><p>0%</p></div>
+                  <div class="slider-ticks-100"><p>100%</p></div>
+               </div>
+            </div>
+		  </div> -->
+		</div>
+		<div class="calculator-options">
+          <div class="element-header">
+            <h6>Options - Number of opponents</h6>
+          </div>
+          <div class="element-contents">
+                <div class="opponents-wrap"> 
+                    <form id="opponentsSelector">
+                        <p>
+                          Calculate range for <input type="radio" name="vs" value="1" onclick="vsChanged(this);">1
+                          <input type="radio" name="vs" value="2" onclick="vsChanged(this);">2
+                          <input type="radio" name="vs" value="3" checked="" onclick="vsChanged(this);">3 opponent(s)
+                        </p>
+                    </form>
+                </div>
+          </div>
+        </div>
+		<div class="calculator-hands">
+	      <div class="element-header">
+	        <h6>Hands selected</h6>
+	      </div>
+	      <div class="element-contents">
+	        <div class="hands-textarea-wrap">
+	          <p id="hands-textarea">55+, A3s+, K8s+, Q9s+, A7o+, KTo+, QJo</p>
+            </div>
+	      </div>
+	    </div>
+    </div>
+</div>
+
+</body>
+</html>

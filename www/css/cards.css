@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'card_charactersregular';
+    src: url('font/cardc___-webfont.eot');
+    src: url('font/cardc___-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/cardc___-webfont.woff') format('woff'),
+         url('font/cardc___-webfont.ttf') format('truetype'),
+         url('font/cardc___-webfont.svg#card_charactersregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: #00a651;
+}
+
+#card1, #card0{
+    position: relative;
+    float: left;
+    margin-right: 10px;
+    width: 150px;
+    height: 220px;
+    border-radius: 5px;
+    background-color: #fff;   
+}
+
+.card_value{
+    text-align: center;
+    font: 100px/220px 'card_charactersregular';
+}
+
+.d, .h{
+    color: #F00;
+}
+
+.d:before, .d:after{
+    content: "\2666";
+     color: #ff0000;
+}
+
+.h:before, .h:after {
+  content: "\2665";
+  color: #ff0000;
+}
+ 
+.c:before, .c:after {
+  content: "\2663";
+  color: #000;
+}
+ 
+.s:before, .s:after {
+  content: "\2660";
+  color: #000;
+}
+
+.d:before, .h:before, .c:before, .s:before {
+  position: absolute;
+  font-size: 50px;
+  left: 5px;
+  top: 0px;
+}
+
+.d:after, .h:after, .c:after, .s:after {
+  position: absolute;
+  font-size: 50px;
+  right: 5px;
+  bottom: 0px;
+}
+
+.hand {
+  margin: 50px;
+}
+ 
+/* For modern browsers */
+.hand:before,
+.hand:after {
+    content:"";
+    display:table;
+}
+  
+.hand:after {
+    clear:both;
+}

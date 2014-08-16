@@ -1,0 +1,10 @@
+Next Steps
+
+    - Pesquisar apps existentes - jogos de poker e ICM trainers
+    - Criar a estrutura HTML (menu de opções, etc)
+    
+    - Definir módulos de programação que poderão ser codificados em separado - funções em JS:
+        - Sortear e distribuir as cartas (e gerar no CSS) - Done!
+        - Verificar e definir a força da mão e a qual range ela pertence
+        - Definir tamanho das stacks (com precisão e blinds)
+        - Armazenar no banco - testar com cookies e/ou local storage

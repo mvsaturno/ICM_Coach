@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Test</title>
+    <script src="js/jquery.js"></script>
+    <script src="js/cards.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/cards.css">
+</head>
+<body>
+
+<button id="deal_cards">sortear cartas</button>
+
+<div id="hand">
+
+    <div id="card0" class="">
+        <p class="card_value" id="value0"></p>
+    </div>
+
+    <div id="card1" class="">
+        <p class="card_value" id="value1"></p>
+    </div>
+
+</div>
+
+</body>
+<script type="text/javascript">
+    $(function(){
+        $("#deal_cards").on('click', function(){ 
+            var cards = sortCards();
+            console.log(cards);
+            for (var z = 0; z < cards.length; z++) {
+                $("#value"+z).html("");
+                if (cards[z].indexOf("10") >= 0) {
+                    $("#value"+z).html("10");
+                    $("#card"+z).removeClass();
+                    $("#card"+z).addClass(""+cards[z][2]);
+                } else {
+                    $("#value"+z).html(cards[z][0]);
+                    $("#card"+z).removeClass();
+                    $("#card"+z).addClass(""+cards[z][1]);
+                }
+
+            }
+
+        });
+    });
+</script>
+</html>

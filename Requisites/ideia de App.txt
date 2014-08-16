@@ -1,0 +1,93 @@
+Ideia de App:
+
+    Name: ICM Coach
+
+    Objetivo:
+        - Aplicativo que permite treinar o conceito de ICM - Independent Chip Model no celular, como se fosse um jogo casual mobile. 
+
+    Funcionalidades:
+        - Possuindo opções do usuário setar definições de como quer aprimorar seu jogo:
+            - Num. players (do torneio)
+            - Jogar Push/Fold, apenas Call/fold ou ambos
+            - 4 colors deck
+            - Estrutura de pagamento
+            - Stacks
+            - Se sei o range de PUSH/FOLD dos adversários ou não sei (simular isso no cálculo tb, altera a lógica) - talvez usar apenas labels como 'Calling-station', 'LAG', 'Tight', etc... Caso essa opção não seja marcada, iremos apenas pelo valor das cartas e as porcentagens de cada uma vencer.
+            - Número de jogadas (10, 20, 30...) a serem testadas
+
+        - Salvar os dados em armazenamento local para fins de consulta posterior (comparação, tracking)
+        - Após cada mão providenciar o feedback pro usuário rever porque errou/acertou (incluir uma checkbox pra só ver todos feedbacks no final)
+        - Verificar se o usuário saiu do jogo no meio de um Quiz e perguntar se deseja que o usuário continue daonde parou.
+        - Fazer login e comparar-se à outros jogadores - ladderboard (?)
+
+    Requisitos:
+        - Cross platform: Android e iOS (Windows Mobile, se der). Primeiro Android - se der grana, fazemos pra iOS
+        - O App será cobrado (de $1 a $2,49) - Ou talvez opção de baixar de graça e pagar para ter o storage e mais opções de setup
+        [- Languages? (PT, ES, EN...)]
+        - User friendly
+        - Utilizar a view da table semelhante à do App PokerStars De lado e com botões grandes.
+        - Utilizar CSS3 para gerar os gráficos e fazer as animações: fichas e cartas
+            - Baralho: 
+                - http://selfthinker.github.io/CSS-Playing-Cards/
+                - http://htmyell.com/creating-playing-cards-with-css-html/
+                - http://designshack.net/articles/css/css-card-tricks/
+                - Fundo do baralho:
+                    - http://lea.verou.me/css3patterns/#
+                    - (usar imagems!) 
+            - Fichas:
+                - http://design.tutsplus.com/tutorials/how-to-create-a-stack-of-poker-chips--vector-2320
+                - 
+        - Rodar rápido
+        - Seção de tutorial explicando o que é ICM
+        - Oferecer feedback ao jogador e também sugerir melhorias
+
+    Tecnologias utilizadas:
+        - Apache Cordova (HTML5, JS, CSS)
+        - Local storage
+            [- opção de login para salvar os dados num servidor externo?]
+
+    Teoria aplicada:
+
+        Num SnG, as fichas não possuem um valor fixo devido ao tamanho das stacks e as fases do torneio. Em síntese, o número de fichas e o seu valor não estão diretamente relacionadas. 
+
+        Referências:
+        Arquivos 
+            - ICM.js
+            - ICM.html
+            - icm-webservice.py
+
+        Steps the basic approach:
+
+            1st step, assign ur opponent a shoving or calling range
+
+            2nd step (we will start with him shoving first and us calling)
+
+            - calculate ur chip equity if u fold using ICM. http://www.icmpoker.com/Calculator.aspx
+
+            - calculate ur chip equity if u call and win using ICM
+
+            - calculate ur chip equity if u call and lose using ICM
+
+            the difference between the equity if u call and win and if u fold is what u stand to gain
+
+            the difference between the equity if u call and lose and folding is what u stand to lose
+
+            3rd step - figure out the % of time u need to win to break even based on how much u stand to gain and how much u stand to lose.
+
+            4th step - use pokerstove to see if ur hand wins the appropriate amount of times vs his range (theres also a website that if u put in his range and the % u need it will list every hand u can call with but i dont know what site it is, jennefear can give it to u)
+
+            if ur the one shoving theres an extra step. u need to calculate the amount of times u take down the pot pre flop. u give him a calling range and figure out what % of hands that is. thus u also know the % of hands he folds.
+
+            now u calculate ur chip equity if u fold,
+
+            then calculate ur equity if HE folds multiplied by the % it occurs
+
+            equity if he calls and u win multiplied by the % it occurs (run ur hand vs his range)
+
+            equity if he calls and u lose multiplied by the % it occurs
+
+            if the overall equity of shoving given his range is higher than folding u shove, if its lower u fold
+
+            the nash equilibrium: http://www.holdemresources.net/h/web-calculators/nashicm.html
+
+            assumes that everyone is calling and shoving perfectly, it can give u a quick refrence to see if a call and shove is likely profitable but if u know that someones shoving range is looser/tighter than nash then u will need to do ur own calculations for it.
