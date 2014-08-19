@@ -5,6 +5,6 @@ Next Steps
     
     - Definir módulos de programação que poderão ser codificados em separado - funções em JS:
         - Sortear e distribuir as cartas (e gerar no CSS) - Done!
-        - Verificar e definir a força da mão e a qual range ela pertence
+        - Verificar e definir a força da mão e a qual range ela pertence - WIP
         - Definir tamanho das stacks (com precisão e blinds)
         - Armazenar no banco - testar com cookies e/ou local storage

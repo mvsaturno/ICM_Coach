@@ -48,6 +48,9 @@ Ideia de App:
 
     Teoria aplicada:
 
+        Leitura de mãos:
+        http://www.gamblingsystem.biz/books/Ed_Miller_How_To_Read_Hands_At_No-Limit_Hold'em.pdf
+
         Num SnG, as fichas não possuem um valor fixo devido ao tamanho das stacks e as fases do torneio. Em síntese, o número de fichas e o seu valor não estão diretamente relacionadas. 
 
         Referências:
