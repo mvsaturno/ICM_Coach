@@ -3,6 +3,7 @@
     <title>Test</title>
     <script src="js/jquery.js"></script>
     <script src="js/cards.js"></script>
+    <script src="js/range_calc.js"></script>
     <link rel="stylesheet" type="text/css" href="css/cards.css">
 </head>
 <body>
@@ -26,7 +27,7 @@
     $(function(){
         $("#deal_cards").on('click', function(){ 
             var cards = sortCards();
-            console.log(cards);
+            // console.log(cards);
             for (var z = 0; z < cards.length; z++) {
                 $("#value"+z).html("");
                 if (cards[z].indexOf("10") >= 0) {

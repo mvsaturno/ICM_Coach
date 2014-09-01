@@ -93,10 +93,10 @@ function testDuplicated(it){
 
     for (var x = 0; x < it; x++) {
         y = sortCards();
-        console.log(y);
+        // console.log(y);
         if (y[1] === y[2]){
             errors++;
-            console.log(errors);
+            // console.log(errors);
         }
     }
     return errors;
@@ -118,14 +118,14 @@ function testAmmount(ammount){
     {"value": "10", "count": 0},
     {"value": "J", "count": 0},
     {"value": "Q", "count": 0},
-    {"value": "K", "count": 0},
+    {"value": "K", "count": 0}
     ];
 
     var cardSuits = [
     {"suit": "h", "count": 0},
     {"suit": "c", "count": 0},
     {"suit": "s", "count": 0},
-    {"suit": "d", "count": 0},
+    {"suit": "d", "count": 0}
     ];
 
     results.cardValues = cardValues;
